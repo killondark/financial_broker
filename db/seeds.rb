@@ -17,8 +17,13 @@ Account.find_or_create_by!(user: anna) do |a|
 end
 
 # Создаются заказы для данных пользователей
-sasha_order = Orders::Creator.new(user: sasha, order_params: { description: "Sasha's order description" }).call.value!
-anna_order = Orders::Creator.new(user: anna, order_params: { description: "Anna's order description" }).call.value!
+sasha_order = Orders::Creator.new(
+  user: sasha, order_params: { description: "Sasha's order description" }
+).call.value!
+
+anna_order = Orders::Creator.new(
+  user: anna, order_params: { description: "Anna's order description" }
+).call.value!
 
 # Пользователь sasha переводит пользователю anna 9.99
 Orders::Completer.new(

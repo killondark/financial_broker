@@ -16,7 +16,7 @@
 
 **Для запуска rspec-тестов:**
 - `bundle exec rspec` \
-Написал интеграционные тесты `spec/requests/api/orders_spec.rb` на осовную на данный момент бизнес-логику. \
+Написал интеграционные тесты `spec/requests/api/orders_spec.rb` на осовную на данный момент бизнес-логику.
 В них подробно расписаны все требуемые кейсы.  \
 Тесты на `users-CRUD`(`app/controllers/api/users_controller.rb`) были пропущены для экономии времени.
 
@@ -53,8 +53,13 @@ Account.find_or_create_by!(user: anna) do |a|
 end
 
 # Создаются заказы для данных пользователей
-sasha_order = Orders::Creator.new(user: sasha, order_params: { description: "Sasha's order description" }).call.value!
-anna_order = Orders::Creator.new(user: anna, order_params: { description: "Anna's order description" }).call.value!
+sasha_order = Orders::Creator.new(
+  user: sasha, order_params: { description: "Sasha's order description" }
+).call.value!
+
+anna_order = Orders::Creator.new(
+  user: anna, order_params: { description: "Anna's order description" }
+).call.value!
 
 # Пользователь sasha переводит пользователю anna 9.99
 Orders::Completer.new(
